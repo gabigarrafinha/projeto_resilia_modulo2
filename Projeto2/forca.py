@@ -5,12 +5,13 @@ from palavras import palavras
 
 def peg_palavra():
     palavra = random.choice(palavras)
-    return peg_palavra()
+    return palavra
 
 
 def jogar(palavra):
     comp_palavra = " _ " * len(palavra)
     adv = False
+    print(palavra)
     letras_adv = []
     palavras_adv = []
     tentativas = 6
@@ -56,7 +57,6 @@ def jogar(palavra):
         print("Parabéns, você acertou a palavra !!")
     else:
         print("Sinto muito, suas tentativas acabaram, a palavra era " + palavra + ". Quem sabe na próxima!")
-
 
 def enforcado(tentativas):
     fases = [  # cabeça corpo braço2 perna2
@@ -131,7 +131,6 @@ def enforcado(tentativas):
                 """
     ]
     return fases[tentativas]
-
 
 def main():
     palavra = peg_palavra()
