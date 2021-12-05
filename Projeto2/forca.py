@@ -2,6 +2,7 @@ import random
 from palavras import palavras
 
 
+#funcao para escolha de palavras
 
 def peg_palavra():
     palavra = random.choice(palavras)
