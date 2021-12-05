@@ -10,6 +10,7 @@ def peg_palavra():
 
 
 def jogar(palavra):
+    adivinhou = False
     comp_palavra = " _ " * len(palavra)
     adv = False
     print(palavra)
