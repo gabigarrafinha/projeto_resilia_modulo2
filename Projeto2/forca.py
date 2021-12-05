@@ -137,7 +137,7 @@ def main():
     jogar(palavra)
     while input("Deseja jogar denovo? (Y/N) ").upper() == "Y":
         palavra = peg_palavra()
-        jogar(palavra)
+        jogar(palavra) 
 
 
 if __name__ == "__main__":
