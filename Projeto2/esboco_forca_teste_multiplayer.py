@@ -1,5 +1,6 @@
 import random
 from palavras import palavras
+from boneco_forca import desenha_forca
 
 
 #inicialização de variáveis e estruturas de dados
@@ -18,16 +19,16 @@ lista_letras_acertadas = []
 
 #função que criei para pausar o código nas partes que estavam dando erro para poder analisar o corportamento dos laços
 def pause():
-    input("Pressione <enter> para continuar")
+    input("Pressione <enter> para continuar" )
 
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
     quantidade_jogadores = int(input("Escolha a quantidade de jogadores. De 2 a 5: "))
     if quantidade_jogadores > 5:
-        print("Por favor, digite uma opção válida!")
+        print("Por favor, digite uma opção válida!\n")
         cria_lista_jogadores()
     for n in range(0, (quantidade_jogadores)):
-        jogadores.append(input("Qual o nome do jogador? "))
+        jogadores.append(input("Qual o nome do jogador?\n "))
 
 #função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra
 def define_palavras():
@@ -45,7 +46,7 @@ def carrega_palavra_secreta():
 
 #função que pede que o jogador chute uma letra da palavra
 def pede_palpite():
-    palpite = input("Qual letra? ")
+    palpite = input("Qual letra?\n ")
     palpite = palpite.upper()
     return palpite
 
@@ -59,64 +60,14 @@ def marca_acertos(palpite, letras_acertadas, palavra_secreta):
 
 #função para saudar o vencedor, acabei tirando nos testes do multiplayer, mas depois podemos usar de novo.
 def imprime_mensagem_vencedor():
-    print("Parabéns, você ganhou!")
+    print("Parabéns, você ganhou!\n")
   
 #função que exibe a mensagem quando a pessoa é enforcada, acabei tirando nos testes do multiplayer, mas depois podemos usar de novo.
 def imprime_mensagem_perdedor(palavra_secreta):
-    print("Você foi enforcado!")
+    print("Você foi enforcado!\n")
     
 
 #função que desena a forca
-def desenha_forca(erros):
-    print("  _______     ")
-    print(" |/      |    ")
-
-    if(erros == 1):
-        print(" |      (_)   ")
-        print(" |            ")
-        print(" |            ")
-        print(" |            ")
-
-    if(erros == 2):
-        print(" |      (_)   ")
-        print(" |       |    ")
-        print(" |            ")
-        print(" |            ")
-        
-
-    if(erros == 3):
-        print(" |      (_)   ")
-        print(" |      \|    ")
-        print(" |            ")
-        print(" |            ")
-
-    if(erros == 4):
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |            ")
-        print(" |            ")
-
-    if(erros == 5):
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |       |    ")
-        print(" |            ")
-
-    if(erros == 6):
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |       |    ")
-        print(" |      /     ")
-
-    if (erros == 7):
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |       |    ")
-        print(" |      / \   ")
-
-    print(" |            ")
-    print("_|___         ")
-    print()
 
 #função do jogo
 def jogar():
