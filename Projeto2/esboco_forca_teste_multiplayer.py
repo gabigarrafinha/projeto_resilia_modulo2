@@ -1,4 +1,5 @@
 import random
+from palavras import palavras
 
 
 #inicialização de variáveis e estruturas de dados
@@ -22,12 +23,15 @@ def pause():
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
     quantidade_jogadores = int(input("Escolha a quantidade de jogadores. De 2 a 5: "))
+    if quantidade_jogadores > 5:
+        print("Por favor, digite uma opção válida!")
+        cria_lista_jogadores()
     for n in range(0, (quantidade_jogadores)):
-        jogadores.append(input("Qual o nome do jogador?"))
+        jogadores.append(input("Qual o nome do jogador? "))
 
 #função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra
 def define_palavras():
-    for jogagor in jogadores: 
+    for jogador in jogadores: 
         palavra_secreta = carrega_palavra_secreta()
         palavras_secretas.append(palavra_secreta)
         letras_acertadas = ["_" for letra in palavra_secreta]
@@ -36,7 +40,6 @@ def define_palavras():
 
 #função que sorteia a plavra a ser acertada, usei uma lista comum, depois podemos importar de um arquivo
 def carrega_palavra_secreta():
-    palavras = ['tatu', 'pato', 'casa', 'vaca', 'ave', 'via', 'asa', 'rua','abacaxi', 'paralelepípedo', 'donzela', 'itinerante', 'ornitorrinco']
     palavra_secreta = random.choice(palavras)
     return palavra_secreta.upper()
 

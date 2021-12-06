@@ -22,7 +22,6 @@ palavras = ['Amarelo',
 'Girafa'
 'Janela'
 'Limonada'
-'Mae'
 'Meia'
 'Noite'
 'Oculos'
