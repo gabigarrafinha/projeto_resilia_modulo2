@@ -1,9 +1,7 @@
 palavras = ['Amarelo',
 'Amiga',
 'Amor',
-'Ave',
 'Aviao',
-'Avo',
 'Balao',
 'Bebe',
 'Bolo',
@@ -29,9 +27,6 @@ palavras = ['Amarelo',
 'Noite'
 'Oculos'
 'Onibus'
-'Ovo'
-'Pai'
-'Pão'
 'Parque'
 'Passarinho'
 'Peixe'
