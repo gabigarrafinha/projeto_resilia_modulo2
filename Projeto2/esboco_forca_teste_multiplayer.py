@@ -119,7 +119,7 @@ def jogar():
                     print(jogador, 'é a sua vez')
 
                         #mandei imprimir o índice para ver se estava certa a numeração
-                    print('O índice é: ', indice)
+                    # print('O índice é: ', indice)
                     palpite = pede_palpite()
 
                     if (palpite in palavras_secretas[indice]):
