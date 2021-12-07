@@ -14,8 +14,8 @@ palavra_secreta = ""
 palavras_secretas = []
 letras_acertadas = []
 lista_letras_acertadas = []
-#jogador_palavra = {}
-#palavras_letras = {}
+# jogador_palavra = {}
+# palavras_letras = {}
 
 #função que criei para pausar o código nas partes que estavam dando erro para poder analisar o corportamento dos laços
 def pause():
@@ -24,13 +24,14 @@ def pause():
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
     quantidade_jogadores = int(input("Escolha a quantidade de jogadores. De 2 a 5: "))
-    if quantidade_jogadores > 5:
-        print("Por favor, digite uma opção válida!\n")
+    if quantidade_jogadores < 2 or quantidade_jogadores > 5:
+        print("\nPor favor, digite uma opção válida!\n")
         cria_lista_jogadores()
     for n in range(0, (quantidade_jogadores)):
         jogadores.append(input("Qual o nome do jogador?\n "))
 
-#função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra
+#função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as
+# lacunas a serem preenchidas pelas letras de cada palavra
 def define_palavras():
     for jogador in jogadores: 
         palavra_secreta = carrega_palavra_secreta()
@@ -64,10 +65,10 @@ def imprime_mensagem_vencedor():
   
 #função que exibe a mensagem quando a pessoa é enforcada, acabei tirando nos testes do multiplayer, mas depois podemos usar de novo.
 def imprime_mensagem_perdedor(palavra_secreta):
-    print("Você foi enforcado!\n")
+    print(f"Você foi enforcado, a palavra secreta era {palavra_secreta} \n")
     
 
-#função que desena a forca
+#função que desenha a forca
 
 #função do jogo
 def jogar():
@@ -86,8 +87,9 @@ def jogar():
     
     while not fim_do_jogo:
 
-        #criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da palavra secreta dele e das letras acertadas dele.
-        #a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
+        # criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da
+        # palavra secreta dele e das letras acertadas dele.
+        # a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
         indice = 0
 
         print(jogadores)
@@ -107,7 +109,8 @@ def jogar():
                 #reset da variável boleana que diz se a pessoa errou a rodada, porque se não for zerada o laço não termina
                 errou_palpite = False
                 
-                #reset da variável boleana que diz se a pessoa foi enforcada, porque se não for zerada quando o primeiro é enforcado o jogo termina para todos
+                #reset da variável boleana que diz se a pessoa foi enforcada, porque se não for zerada quando o primeiro é enforcado o
+                # jogo termina para todos
                 enforcou = False
 
             
