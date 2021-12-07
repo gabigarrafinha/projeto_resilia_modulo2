@@ -90,7 +90,7 @@ def jogar():
         #a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
         indice = 0
 
-        print(jogadores)
+        
 
         if jogadores == []:
            fim_do_jogo = True
@@ -115,8 +115,6 @@ def jogar():
                         
                     print(jogador, 'é a sua vez')
 
-                        #mandei imprimir o índice para ver se estava certa a numeração
-                    print('O índice é: ', indice)
                     palpite = pede_palpite()
 
                     if (palpite in palavras_secretas[indice]):
