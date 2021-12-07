@@ -1,4 +1,5 @@
 import random
+import string
 from palavras import palavras
 from boneco_forca import desenha_forca
 
@@ -24,7 +25,7 @@ def pause():
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
     quantidade_jogadores = int(input("Escolha a quantidade de jogadores. De 2 a 5: "))
-    if quantidade_jogadores > 5:
+    if quantidade_jogadores < 2 or quantidade_jogadores > 5:
         print("Por favor, digite uma opção válida!\n")
         cria_lista_jogadores()
     for n in range(0, (quantidade_jogadores)):
@@ -47,7 +48,11 @@ def carrega_palavra_secreta():
 #função que pede que o jogador chute uma letra da palavra
 def pede_palpite():
     palpite = input("Qual letra?\n ")
-    palpite = palpite.upper()
+    if palpite not in string.ascii_letters:
+        print('Por favor, escolha uma letra do alfabeto')
+        pede_palpite()
+    else:
+        palpite = palpite.upper()
     return palpite
 
 #função que marca os acertos do jogdador. Ela tem parâmetros, o palpite, as letras que ele ganhou, e a palavra secreta do jogador. 
@@ -66,8 +71,6 @@ def imprime_mensagem_vencedor():
 def imprime_mensagem_perdedor(palavra_secreta):
     print("Você foi enforcado!\n")
     
-
-#função que desena a forca
 
 #função do jogo
 def jogar():
@@ -131,9 +134,8 @@ def jogar():
                             
                     
                             
-                    print(erros[indice])
+                    
                     enforcou = erros[indice] == 7
-                    print(enforcou)
                     #errou = erros[indice] > 0 and erros[indice] < 7
                     ganhou = "_" not in lista_letras_acertadas[indice]    
 
@@ -144,7 +146,6 @@ def jogar():
                     fim_do_jogo = True
                                 
                 elif (enforcou):
-                    print(erros[indice])
                     desenha_forca(erros[indice])
                     print("Você foi enforcado")
                     print("A palavra era", palavras_secretas[indice])
