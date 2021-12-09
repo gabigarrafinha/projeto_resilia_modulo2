@@ -72,38 +72,29 @@ def imprime_mensagem_perdedor(palavra_secreta):
 
 #função do jogo
 def jogar():
-
     enforcou = False
     ganhou = False
     errou = False
     fim_do_jogo = False
-    
-
     print("Vamos jogar o jogo da Forca!")
-
     cria_lista_jogadores()
-
     define_palavras()
-    
     while not fim_do_jogo:
-
         # criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da
         # palavra secreta dele e das letras acertadas dele.
         # a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
         indice = 0
-
-        print(jogadores)
-
+        print(f'\nOs jogadores são: {jogadores[0]} e {jogadores[1]} !\n')
         if jogadores == []:
            fim_do_jogo = True
         else:
-
-
             for jogador in jogadores: 
 
-                print(lista_letras_acertadas[indice])
-
+                print(f'{jogadores[indice]}, a sua palavra tem {len(lista_letras_acertadas[indice])} letras !\n')
                 letras_faltando = len(lista_letras_acertadas[indice])
+                pause()
+                print(desenha_forca(erros[indice]))
+                pause()
 
 
                 #reset da variável boleana que diz se a pessoa errou a rodada, porque se não for zerada o laço não termina
@@ -116,7 +107,7 @@ def jogar():
             
                 while (not ganhou and not enforcou and not errou_palpite):
                         
-                    print(jogador, 'é a sua vez')
+                    print(jogador, 'é a sua vez.\n')
 
                         #mandei imprimir o índice para ver se estava certa a numeração
                     # print('O índice é: ', indice)
@@ -134,7 +125,7 @@ def jogar():
                             
                     
                             
-                    print(erros[indice])
+                    # print(erros[indice])
                     enforcou = erros[indice] == 7
                     print(enforcou)
                     #errou = erros[indice] > 0 and erros[indice] < 7
