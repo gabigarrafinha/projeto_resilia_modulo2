@@ -52,5 +52,5 @@ def desenha_forca(erros):
         print(" |      / \   ")
 
     print(" |            ")
-    print("_|___         ")
+    print(" |            \n")
 
