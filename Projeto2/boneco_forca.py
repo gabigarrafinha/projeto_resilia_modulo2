@@ -54,4 +54,3 @@ def desenha_forca(erros):
     print(" |            ")
     print("_|___         ")
 
-print(desenha_forca(5))

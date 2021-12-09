@@ -157,14 +157,14 @@ def jogar():
 
 #Aqui eu chamo as funções em separado para testar quando preciso
 
-""" cria_lista_jogadores()
+# """ cria_lista_jogadores()
 
-define_palavras()
+# define_palavras()
 
-print(palavras_secretas)
-print(lista_letras_acertadas)
-print(erros)
- """
+# print(palavras_secretas)
+# print(lista_letras_acertadas)
+# print(erros)
+#  """
 #letras_faltando = str(lista_letras_acertadas[0].count('_'))
 
 #print(letras_faltando)
