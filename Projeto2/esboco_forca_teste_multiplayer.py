@@ -15,6 +15,7 @@ palavra_secreta = ""
 palavras_secretas = []
 letras_acertadas = []
 lista_letras_acertadas = []
+pontuacao = {}
 #jogador_palavra = {}
 #palavras_letras = {}
 
@@ -49,6 +50,20 @@ def define_palavras():
 def carrega_palavra_secreta():
     palavra_secreta = random.choice(palavras)
     return palavra_secreta.upper()
+
+def cria_tabela_pontos():
+    for jogador in jogadores:
+        pontuacao [jogador] = 0
+    return pontuacao
+
+def marca_ponto(vencedor):
+    pontuacao [vencedor] += 1
+    return pontuacao
+
+def imprime_placar():
+    for chave, valor in pontuacao.items():
+     print(f"O jogador {chave} está com {valor} pontos")
+
 
 #função que pede que o jogador chute uma letra da palavra
 def pede_palpite():
@@ -88,8 +103,6 @@ def jogar():
 
     print("Vamos jogar o jogo da Forca!")
 
-    cria_lista_jogadores()
-
     define_palavras()
     
     while not fim_do_jogo:
@@ -110,8 +123,6 @@ def jogar():
                 print(lista_letras_acertadas[indice])
 
                 letras_faltando = len(lista_letras_acertadas[indice])
-
-                desenha_forca(erros[indice])
 
 
                 #reset da variável boleana que diz se a pessoa errou a rodada, porque se não for zerada o laço não termina
@@ -152,6 +163,9 @@ def jogar():
 
                 if (ganhou):
                     fim_do_jogo = True
+                    marca_ponto(jogador)
+                    print(pontuacao)
+                    break
                                 
                 elif (enforcou):
                     #print(erros[indice])
@@ -161,6 +175,7 @@ def jogar():
                     jogadores.remove(jogador)
                     erros.pop(indice)
                     palavras_secretas.pop(indice)
+
                 elif (errou_palpite):
                     print('Você errou')
                     print('Ainda faltam acertar', letras_faltando, 'letras')
@@ -169,8 +184,11 @@ def jogar():
                 indice += 1
 
     print("Fim do jogo")
+    imprime_placar()
 
 
+cria_lista_jogadores()
 
+print(cria_tabela_pontos())
 
 jogar()
