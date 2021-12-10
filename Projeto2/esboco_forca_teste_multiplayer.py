@@ -1,5 +1,5 @@
 import random
-import string
+from string import ascii_letters
 from palavras import palavras
 from boneco_forca import desenha_forca
 
@@ -24,11 +24,16 @@ def pause():
 
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
-    quantidade_jogadores = int(input("Escolha a quantidade de jogadores. De 2 a 5: "))
-    if quantidade_jogadores < 2 or quantidade_jogadores > 5:
+    quantidade_jogadores = input("Escolha a quantidade de jogadores. De 2 a 5: ")
+    if not quantidade_jogadores.isdigit():
         print("Por favor, digite uma opção válida!\n")
+        quantidade_jogadores = 0
         cria_lista_jogadores()
-    for n in range(0, (quantidade_jogadores)):
+    elif int(quantidade_jogadores) < 2 or int(quantidade_jogadores) > 5:
+        print("Por favor, digite uma opção válida!\n")
+        quantidade_jogadores = 0
+        cria_lista_jogadores()
+    for n in range(0, (int(quantidade_jogadores))):
         jogadores.append(input("Qual o nome do jogador?\n "))
 
 #função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra
@@ -48,7 +53,7 @@ def carrega_palavra_secreta():
 #função que pede que o jogador chute uma letra da palavra
 def pede_palpite():
     palpite = input("Qual letra?\n ")
-    if palpite not in string.ascii_letters:
+    if palpite not in ascii_letters:
         print("Por favor, digite uma letra alfabeto")
         pede_palpite()
     else:
@@ -105,6 +110,8 @@ def jogar():
                 print(lista_letras_acertadas[indice])
 
                 letras_faltando = len(lista_letras_acertadas[indice])
+
+                desenha_forca(erros[indice])
 
 
                 #reset da variável boleana que diz se a pessoa errou a rodada, porque se não for zerada o laço não termina
