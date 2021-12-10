@@ -103,7 +103,6 @@ def jogar():
                     # print('O índice é: ', indice)
                     palpite = pede_palpite()
                     if (palpite in palavras_secretas[indice]):                       
-                        # desenha_forca(erros[indice])
                         letras_faltando = (lista_letras_acertadas[indice].count('_')) 
                         marca_acertos(palpite, lista_letras_acertadas[indice], palavras_secretas[indice])                       
                     if (letras_faltando == "0"):
@@ -113,9 +112,9 @@ def jogar():
                         errou_palpite = True
                         desenha_forca(erros[indice]) 
                         print(f"{lista_letras_acertadas[indice]}\n")                                                                             
-                    # print(erros[indice])
+                    print(erros[indice])
                     enforcou = erros[indice] == 7
-                    # print(enforcou)
+                    print(enforcou)
                     errou = erros[indice] > 0 and erros[indice] < 7
                     ganhou = "_" not in lista_letras_acertadas[indice]    
 
