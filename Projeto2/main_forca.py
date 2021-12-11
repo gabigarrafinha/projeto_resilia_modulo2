@@ -25,6 +25,7 @@ def pause():
 
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
+    print('Vamos jogar o jogo da forca !')
     quantidade_jogadores = input("Escolha a quantidade de jogadores. De 2 a 5: ")
     if not quantidade_jogadores.isdigit():
         print("Por favor, digite uma opção válida!\n")
@@ -120,7 +121,6 @@ def jogar():
 
             for jogador in jogadores: 
 
-                print(lista_letras_acertadas[indice])
 
                 letras_faltando = len(lista_letras_acertadas[indice])
 
@@ -131,23 +131,21 @@ def jogar():
                 #reset da variável boleana que diz se a pessoa foi enforcada, porque se não for zerada quando o primeiro é enforcado o jogo termina para todos
                 enforcou = False
 
-            
+                print(f'{jogador} é a sua vez.\nA sua palavra tem {len(lista_letras_acertadas[indice])} letras ! ')
                 while (not ganhou and not enforcou and not errou_palpite):
-                        
-                    print(f'{jogador} é a sua vez.\nA sua palavra tem {len(lista_letras_acertadas[indice])} letras ! ')
-                    desenha_forca(erros[indice])
 
                         #mandei imprimir o índice para ver se estava certa a numeração
-                    print('O índice é: ', indice)
                     palpite = pede_palpite()
 
                     if (palpite in palavras_secretas[indice]):
+                        desenha_forca(erros[indice])
                         marca_acertos(palpite, lista_letras_acertadas[indice], palavras_secretas[indice])
                         letras_faltando = str(lista_letras_acertadas[indice].count('_'))
                         if (letras_faltando == "0"):
                             print("PARABÉNS!! Você encontrou todas as letras formando a palavra '{}'".format(palavras_secretas[indice].upper()))
                     else:
                         erros[indice] += 1
+                        desenha_forca(erros[indice])
                         print(lista_letras_acertadas[indice])
                         errou_palpite = True
                             
