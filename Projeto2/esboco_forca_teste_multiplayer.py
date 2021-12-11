@@ -77,16 +77,14 @@ def jogar():
     errou = False
     fim_do_jogo = False
     print("Vamos jogar o jogo da Forca!")
-    print(f'\nOs jogadores são: {jogadores[0]} e {jogadores[1]} !\n')
     cria_lista_jogadores()
     define_palavras()
+    print(f'\nOs jogadores são: {jogadores[0]} e {jogadores[1]} !\n')
     while not fim_do_jogo:
         # criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da
         # palavra secreta dele e das letras acertadas dele.
         # a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
         indice = 0
-
-        
         if jogadores == []:
            fim_do_jogo = True
         else:
@@ -113,22 +111,15 @@ def jogar():
                         erros[indice] += 1
                         desenha_forca(erros[indice]) 
                         print(f"{lista_letras_acertadas[indice]}\n")   
-                        errou_palpite = True                                                                          
+                        errou_palpite = True                                                                                            
                     
-                    
-                    
-                    print(erros[indice])
                     enforcou = erros[indice] == 7
-                    print(enforcou)
+                    
                     # errou = erros[indice] > 0 and erros[indice] < 7
                     ganhou = "_" not in lista_letras_acertadas[indice]    
-
-                    print(lista_letras_acertadas[indice])
-
-
+                    # print(lista_letras_acertadas[indice])
                 if (ganhou):
-                    fim_do_jogo = True
-                                
+                    fim_do_jogo = True                               
                 elif (enforcou):
                     print(erros[indice])
                     desenha_forca(erros[indice])
@@ -139,10 +130,8 @@ def jogar():
                 elif (errou_palpite):
                     print('Você errou')
                     print('Ainda faltam acertar', letras_faltando, 'letras')
-                    desenha_forca(erros[indice])
-                        
+                    desenha_forca(erros[indice])                        
                 indice += 1
-
     print("Fim do jogo")
 
 
