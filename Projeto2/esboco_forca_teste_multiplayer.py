@@ -42,6 +42,8 @@ def define_palavras():
 #função que sorteia a plavra a ser acertada, usei uma lista comum, depois podemos importar de um arquivo
 def carrega_palavra_secreta():
     palavra_secreta = random.choice(palavras)
+    while palavra_secreta in palavras_secretas:
+        palavra_secreta = random.choice(palavras)
     return palavra_secreta.upper()
 
 #função que pede que o jogador chute uma letra da palavra
@@ -66,6 +68,20 @@ def imprime_mensagem_vencedor():
 def imprime_mensagem_perdedor(palavra_secreta):
     print("Você foi enforcado!\n")
     
+#função que cria método para jogar de novo no fim de jogo
+def play_again():
+    pergunta = input("Deseja jogar de novo? (Y/N) ")
+    while pergunta not in {'Y','N','y','n','1','2'}:
+        pergunta = input("Deseja jogar de novo? (Y/N) ")
+    if pergunta in {'Y','y','1'}:
+        jogadores.clear()
+        erros.clear()
+        palavras_secretas.clear()
+        letras_acertadas.clear()
+        lista_letras_acertadas.clear()
+        jogar()
+    elif  pergunta in {'N','n','2'}:
+        quit()
 
 #função que desena a forca
 
@@ -158,7 +174,9 @@ def jogar():
                         
                 indice += 1
 
-    print("Fim do jogo")
+    print("Fim do jogo\n")
+    play_again()
+
 
 
 #Aqui eu chamo as funções em separado para testar quando preciso
