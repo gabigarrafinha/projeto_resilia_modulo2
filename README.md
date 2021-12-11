@@ -1,4 +1,4 @@
-# projeto_resilia_modulo2
+@ Projeto Resilia : Módulo 2
 
 # Vamos jogar Forca !
 
