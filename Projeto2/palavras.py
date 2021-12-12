@@ -31,6 +31,6 @@ palavras = ['Amarelo',
 'Peixe',
 'Pijama',
 'Rato',
-'Umbigo',
+'Umbigo'
 ]
 

@@ -1,5 +1,9 @@
 import random
+<<<<<<< HEAD
 import string
+=======
+from string import ascii_letters
+>>>>>>> gabriela
 from palavras import palavras
 from boneco_forca import desenha_forca
 
@@ -15,6 +19,7 @@ palavra_secreta = ""
 palavras_secretas = []
 letras_acertadas = []
 lista_letras_acertadas = []
+pontuacao = {}
 #jogador_palavra = {}
 #palavras_letras = {}
 
@@ -24,11 +29,21 @@ def pause():
 
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
+<<<<<<< HEAD
     quantidade_jogadores = int(input("Escolha a quantidade de jogadores. De 2 a 5: "))
     if quantidade_jogadores < 2 or quantidade_jogadores > 5:
+=======
+    quantidade_jogadores = input("Escolha a quantidade de jogadores. De 2 a 5: ")
+    if not quantidade_jogadores.isdigit():
+>>>>>>> gabriela
         print("Por favor, digite uma opção válida!\n")
+        quantidade_jogadores = 0
         cria_lista_jogadores()
-    for n in range(0, (quantidade_jogadores)):
+    elif int(quantidade_jogadores) < 2 or int(quantidade_jogadores) > 5:
+        print("Por favor, digite uma opção válida!\n")
+        quantidade_jogadores = 0
+        cria_lista_jogadores()
+    for n in range(0, (int(quantidade_jogadores))):
         jogadores.append(input("Qual o nome do jogador?\n "))
 
 #função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra
@@ -45,11 +60,30 @@ def carrega_palavra_secreta():
     palavra_secreta = random.choice(palavras)
     return palavra_secreta.upper()
 
+def cria_tabela_pontos():
+    for jogador in jogadores:
+        pontuacao [jogador] = 0
+    return pontuacao
+
+def marca_ponto(vencedor):
+    pontuacao [vencedor] += 1
+    return pontuacao
+
+def imprime_placar():
+    for chave, valor in pontuacao.items():
+     print(f"O jogador {chave} está com {valor} pontos")
+
+
 #função que pede que o jogador chute uma letra da palavra
 def pede_palpite():
     palpite = input("Qual letra?\n ")
+<<<<<<< HEAD
     if palpite not in string.ascii_letters:
         print('Por favor, escolha uma letra do alfabeto')
+=======
+    if palpite not in ascii_letters:
+        print("Por favor, digite uma letra alfabeto")
+>>>>>>> gabriela
         pede_palpite()
     else:
         palpite = palpite.upper()
@@ -82,8 +116,6 @@ def jogar():
     
 
     print("Vamos jogar o jogo da Forca!")
-
-    cria_lista_jogadores()
 
     define_palavras()
     
@@ -134,8 +166,14 @@ def jogar():
                             
                     
                             
+<<<<<<< HEAD
                     
                     enforcou = erros[indice] == 7
+=======
+                    #print(erros[indice])
+                    enforcou = erros[indice] == 7
+                    #print(enforcou)
+>>>>>>> gabriela
                     #errou = erros[indice] > 0 and erros[indice] < 7
                     ganhou = "_" not in lista_letras_acertadas[indice]    
 
@@ -144,14 +182,22 @@ def jogar():
 
                 if (ganhou):
                     fim_do_jogo = True
+                    marca_ponto(jogador)
+                    print(pontuacao)
+                    break
                                 
                 elif (enforcou):
+<<<<<<< HEAD
+=======
+                    #print(erros[indice])
+>>>>>>> gabriela
                     desenha_forca(erros[indice])
                     print("Você foi enforcado")
                     print("A palavra era", palavras_secretas[indice])
                     jogadores.remove(jogador)
                     erros.pop(indice)
                     palavras_secretas.pop(indice)
+
                 elif (errou_palpite):
                     print('Você errou')
                     print('Ainda faltam acertar', letras_faltando, 'letras')
@@ -160,21 +206,11 @@ def jogar():
                 indice += 1
 
     print("Fim do jogo")
+    imprime_placar()
 
 
-#Aqui eu chamo as funções em separado para testar quando preciso
+cria_lista_jogadores()
 
-""" cria_lista_jogadores()
-
-define_palavras()
-
-print(palavras_secretas)
-print(lista_letras_acertadas)
-print(erros)
- """
-#letras_faltando = str(lista_letras_acertadas[0].count('_'))
-
-#print(letras_faltando)
-
+print(cria_tabela_pontos())
 
 jogar()
