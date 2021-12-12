@@ -58,6 +58,8 @@ def define_palavras():
 #função que sorteia a plavra a ser acertada, usei uma lista comum, depois podemos importar de um arquivo
 def carrega_palavra_secreta():
     palavra_secreta = random.choice(palavras)
+    while palavra_secreta in palavras_secretas:
+        palavra_secreta = random.choice(palavras)
     return palavra_secreta.upper()
 
 def cria_tabela_pontos():
@@ -105,6 +107,20 @@ def imprime_mensagem_vencedor():
 def imprime_mensagem_perdedor(palavra_secreta):
     print("Você foi enforcado!\n")
     
+#função que cria método para jogar de novo no fim de jogo
+def play_again():
+    pergunta = input("Deseja jogar de novo? (Y/N) ")
+    while pergunta not in {'Y','N','y','n','1','2'}:
+        pergunta = input("Deseja jogar de novo? (Y/N) ")
+    if pergunta in {'Y','y','1'}:
+        jogadores.clear()
+        erros.clear()
+        palavras_secretas.clear()
+        letras_acertadas.clear()
+        lista_letras_acertadas.clear()
+        jogar()
+    elif  pergunta in {'N','n','2'}:
+        quit()
 
 #função do jogo
 def jogar():
@@ -125,7 +141,7 @@ def jogar():
         #a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
         indice = 0
 
-        print(jogadores)
+        
 
         if jogadores == []:
            fim_do_jogo = True
@@ -150,8 +166,6 @@ def jogar():
                         
                     print(jogador, 'é a sua vez')
 
-                        #mandei imprimir o índice para ver se estava certa a numeração
-                    print('O índice é: ', indice)
                     palpite = pede_palpite()
 
                     if (palpite in palavras_secretas[indice]):
@@ -205,8 +219,14 @@ def jogar():
                         
                 indice += 1
 
+<<<<<<< HEAD
     print("Fim do jogo")
     imprime_placar()
+=======
+    print("Fim do jogo\n")
+    play_again()
+
+>>>>>>> 24bc63f78e44c314842e2fe116987d12ee2a91d8
 
 
 cria_lista_jogadores()

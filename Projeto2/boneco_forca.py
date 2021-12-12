@@ -2,6 +2,12 @@ def desenha_forca(erros):
     print("  _______     ")
     print(" |/      |    ")
 
+    if(erros < 1):
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+
     if(erros == 1):
         print(" |      (_)   ")
         print(" |            ")
@@ -46,5 +52,4 @@ def desenha_forca(erros):
         print(" |      / \   ")
 
     print(" |            ")
-    print("_|___         ")
-    print()
+    print(" |            \n")
