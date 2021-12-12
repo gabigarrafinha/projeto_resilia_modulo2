@@ -7,6 +7,8 @@ from boneco_forca import desenha_forca
 #inicialização de variáveis e estruturas de dados
 
 jogadores = []
+dicionario_jogadres = {}
+quantidade_jogadores = ''
 enforcou = False
 ganhou = False
 errou = False
@@ -21,19 +23,28 @@ pontuacao = {}
 def pause():
     input("Pressione <enter> para continuar" )
 
-#função que cria a lista de jogadores
-def cria_lista_jogadores():
+
+
+def cria_dicionario_jogadores():
     quantidade_jogadores = input("Escolha a quantidade de jogadores. De 2 a 5: ")
     if not quantidade_jogadores.isdigit():
         print("Por favor, digite uma opção válida!\n")
         quantidade_jogadores = 0
-        cria_lista_jogadores()
+        cria_dicionario_jogadores()
     elif int(quantidade_jogadores) < 2 or int(quantidade_jogadores) > 5:
         print("Por favor, digite uma opção válida!\n")
         quantidade_jogadores = 0
-        cria_lista_jogadores()
+        cria_dicionario_jogadores()
+    id = 1
     for n in range(0, (int(quantidade_jogadores))):
-        jogadores.append(input("Qual o nome do jogador?\n "))
+        dicionario_jogadres.update({id : (input("Qual o nome do jogador?\n "))})
+        id += 1
+
+#função que cria a lista de jogadores
+def cria_lista_jogadores():
+    for id in dicionario_jogadres.keys():
+        jogadores.append(id)
+
 
 #função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra
 def define_palavras():
@@ -65,7 +76,7 @@ def marca_ponto(vencedor):
 #função que imprime a pontuação
 def imprime_placar():
     for chave, valor in pontuacao.items():
-     print(f"O jogador {chave} está com {valor} pontos")
+     print(f"O jogador {chave}, {dicionario_jogadres[chave]},  está com {valor} pontos")
 
 #função que pede que o jogador chute uma letra da palavra
 def pede_palpite():
@@ -99,11 +110,13 @@ def play_again():
     while pergunta not in {'Y','N','y','n','1','2'}:
         pergunta = input("Deseja jogar de novo? (Y/N) ")
     if pergunta in {'Y','y','1'}:
+        jogadores.clear()
         erros.clear()
         palavras_secretas.clear()
         letras_acertadas.clear()
         lista_letras_acertadas.clear()
         imprime_placar()
+        cria_lista_jogadores()
         jogar()
     elif  pergunta in {'N','n','2'}:
         quit()
@@ -126,6 +139,7 @@ def jogar():
         #criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da palavra secreta dele e das letras acertadas dele.
         #a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
         indice = 0
+        #contador_dicionario = 1
 
         
 
@@ -150,7 +164,7 @@ def jogar():
             
                 while (not ganhou and not enforcou and not errou_palpite):
                         
-                    print(jogador, 'é a sua vez')
+                    print(dicionario_jogadres[jogador], 'é a sua vez')
 
                     palpite = pede_palpite()
 
@@ -190,12 +204,22 @@ def jogar():
                     desenha_forca(erros[indice])
                         
                 indice += 1
+                #contador_dicionario +=1
 
     print("Fim do jogo\n")
     play_again()
 
+#define_quantidade_jogadores()
+
+#print(quantidade_jogadores)
+
+cria_dicionario_jogadores()
+
+#print(dicionario_jogadres)
 
 cria_lista_jogadores()
+
+#print(jogadores)
 
 cria_tabela_pontos()
 
