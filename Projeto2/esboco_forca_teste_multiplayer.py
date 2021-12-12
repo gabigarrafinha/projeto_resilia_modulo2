@@ -21,6 +21,7 @@ pontuacao = {}
 def pause():
     input("Pressione <enter> para continuar" )
 
+print('------ Vamos jogar o jogo da forca ! -------')
 #função que cria a lista de jogadores
 def cria_lista_jogadores():
     quantidade_jogadores = input("Escolha a quantidade de jogadores. De 2 a 5: ")
@@ -71,7 +72,7 @@ def imprime_placar():
 def pede_palpite():
     palpite = input("Qual letra?\n ")
     if palpite not in ascii_letters:
-        print("Por favor, digite uma letra alfabeto")
+        print("Por favor, digite uma letra do alfabeto!")
         pede_palpite()
     else:
         palpite = palpite.upper()
@@ -120,7 +121,7 @@ def jogar():
     print("Vamos jogar o jogo da Forca!")
 
     define_palavras()
-    
+    print(f"Os jogadores são {jogadores[0]} e {jogadores[1]} !")
     while not fim_do_jogo:
 
         #criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da palavra secreta dele e das letras acertadas dele.
@@ -128,7 +129,6 @@ def jogar():
         indice = 0
 
         
-
         if jogadores == []:
            fim_do_jogo = True
         else:
@@ -136,7 +136,6 @@ def jogar():
 
             for jogador in jogadores: 
 
-                print(lista_letras_acertadas[indice])
 
                 letras_faltando = len(lista_letras_acertadas[indice])
 
@@ -147,27 +146,31 @@ def jogar():
                 #reset da variável boleana que diz se a pessoa foi enforcada, porque se não for zerada quando o primeiro é enforcado o jogo termina para todos
                 enforcou = False
 
-            
+                print(f'{jogador} é a sua vez.\nA sua palavra tem {len(lista_letras_acertadas[indice])} letras ! ')
+                desenha_forca(erros[indice])
+                print(f'{lista_letras_acertadas[indice]}\n')
+
                 while (not ganhou and not enforcou and not errou_palpite):
-                        
-                    print(jogador, 'é a sua vez')
 
                     palpite = pede_palpite()
 
                     if (palpite in palavras_secretas[indice]):
+                        desenha_forca(erros[indice])
                         marca_acertos(palpite, lista_letras_acertadas[indice], palavras_secretas[indice])
                         letras_faltando = str(lista_letras_acertadas[indice].count('_'))
+                        print(f'{lista_letras_acertadas[indice]}\n')
                         if (letras_faltando == "0"):
                             print("PARABÉNS!! Você encontrou todas as letras formando a palavra '{}'".format(palavras_secretas[indice].upper()))
                     else:
                         erros[indice] += 1
-                        print(lista_letras_acertadas[indice])
+                        desenha_forca(erros[indice])
+                        print(f'{lista_letras_acertadas[indice]}\n')
                         errou_palpite = True
                             
                     enforcou = erros[indice] == 7
                     ganhou = "_" not in lista_letras_acertadas[indice]    
 
-                    print(lista_letras_acertadas[indice])
+                    # print(lista_letras_acertadas[indice])
 
                 if (ganhou):
                     fim_do_jogo = True
@@ -187,7 +190,6 @@ def jogar():
                 elif (errou_palpite):
                     print('Você errou')
                     print('Ainda faltam acertar', letras_faltando, 'letras')
-                    desenha_forca(erros[indice])
                         
                 indice += 1
 

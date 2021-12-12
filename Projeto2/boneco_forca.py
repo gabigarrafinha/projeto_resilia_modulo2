@@ -53,3 +53,4 @@ def desenha_forca(erros):
 
     print(" |            ")
     print(" |            \n")
+
