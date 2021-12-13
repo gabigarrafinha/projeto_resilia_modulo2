@@ -22,6 +22,7 @@ pontuacao = {}
 def pause():
     input("Pressione <enter> para continuar" )
 
+print('------ Vamos jogar o jogo da forca ! -------')
 
 # função que cria um dicionário de jogadores com um id numérico para cada um deles. O dicionário será usada como origem da lista de jogadores da partida 
 def cria_dicionario_jogadores():
@@ -206,7 +207,5 @@ cria_dicionario_jogadores()
 cria_lista_jogadores()
 
 cria_tabela_pontos()
-
-print('------ Vamos jogar o jogo da forca ! -------')
 
 jogar()
