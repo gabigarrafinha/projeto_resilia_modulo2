@@ -8,7 +8,6 @@ from boneco_forca import desenha_forca
 
 jogadores = []
 dicionario_jogadres = {}
-quantidade_jogadores = ''
 enforcou = False
 ganhou = False
 errou = False
@@ -24,7 +23,7 @@ def pause():
     input("Pressione <enter> para continuar" )
 
 
-
+# função que cria um dicionário de jogadores com um id numérico para cada um deles. O dicionário será usada como origem da lista de jogadores da partida 
 def cria_dicionario_jogadores():
     quantidade_jogadores = input("Escolha a quantidade de jogadores. De 2 a 5: ")
     if not quantidade_jogadores.isdigit():
@@ -40,7 +39,7 @@ def cria_dicionario_jogadores():
         dicionario_jogadres.update({id : (input("Qual o nome do jogador?\n "))})
         id += 1
 
-#função que cria a lista de jogadores
+#função que cria a lista de jogadores a cada partida
 def cria_lista_jogadores():
     for id in dicionario_jogadres.keys():
         jogadores.append(id)
@@ -139,8 +138,6 @@ def jogar():
         #criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da palavra secreta dele e das letras acertadas dele.
         #a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
         indice = 0
-        #contador_dicionario = 1
-
         
 
         if jogadores == []:
@@ -204,22 +201,14 @@ def jogar():
                     desenha_forca(erros[indice])
                         
                 indice += 1
-                #contador_dicionario +=1
 
     print("Fim do jogo\n")
     play_again()
 
-#define_quantidade_jogadores()
-
-#print(quantidade_jogadores)
 
 cria_dicionario_jogadores()
 
-#print(dicionario_jogadres)
-
 cria_lista_jogadores()
-
-#print(jogadores)
 
 cria_tabela_pontos()
 
