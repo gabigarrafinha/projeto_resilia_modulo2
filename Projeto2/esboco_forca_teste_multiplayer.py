@@ -127,12 +127,9 @@ def jogar():
     ganhou = False
     errou = False
     fim_do_jogo = False
-    
-
-    print("Vamos jogar o jogo da Forca!")
 
     define_palavras()
-    print(f"Os jogadores são {jogadores[0]} e {jogadores[1]} !")
+
     while not fim_do_jogo:
 
         #criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da palavra secreta dele e das letras acertadas dele.
@@ -156,13 +153,11 @@ def jogar():
                 #reset da variável boleana que diz se a pessoa foi enforcada, porque se não for zerada quando o primeiro é enforcado o jogo termina para todos
                 enforcou = False
 
-                print(f'{jogador} é a sua vez.\nA sua palavra tem {len(lista_letras_acertadas[indice])} letras ! ')
+                print(f'{dicionario_jogadres[jogador]} é a sua vez.\nA sua palavra tem {len(lista_letras_acertadas[indice])} letras ! ')
                 desenha_forca(erros[indice])
                 print(f'{lista_letras_acertadas[indice]}\n')
 
                 while (not ganhou and not enforcou and not errou_palpite):
-                        
-                    print(dicionario_jogadres[jogador], 'é a sua vez')
 
                     palpite = pede_palpite()
 
@@ -182,12 +177,9 @@ def jogar():
                     enforcou = erros[indice] == 7
                     ganhou = "_" not in lista_letras_acertadas[indice]    
 
-                    # print(lista_letras_acertadas[indice])
-
                 if (ganhou):
                     fim_do_jogo = True
                     marca_ponto(jogador)
-                    print(pontuacao)
                     break
                                 
                 elif (enforcou):
@@ -214,5 +206,7 @@ cria_dicionario_jogadores()
 cria_lista_jogadores()
 
 cria_tabela_pontos()
+
+print('------ Vamos jogar o jogo da forca ! -------')
 
 jogar()
