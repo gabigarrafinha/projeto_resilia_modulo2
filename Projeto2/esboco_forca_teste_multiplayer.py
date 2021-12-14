@@ -95,14 +95,6 @@ def marca_acertos(palpite, letras_acertadas, palavra_secreta):
         if (palpite == letra):
             letras_acertadas[index] = letra
         index += 1
-
-#função para saudar o vencedor, acabei tirando nos testes do multiplayer, mas depois podemos usar de novo.
-def imprime_mensagem_vencedor():
-    print("Parabéns, você ganhou!\n")
-  
-#função que exibe a mensagem quando a pessoa é enforcada, acabei tirando nos testes do multiplayer, mas depois podemos usar de novo.
-def imprime_mensagem_perdedor(palavra_secreta):
-    print("Você foi enforcado!\n")
     
 #função que cria método para jogar de novo no fim de jogo
 def play_again():
@@ -154,7 +146,7 @@ def jogar():
                 #reset da variável boleana que diz se a pessoa foi enforcada, porque se não for zerada quando o primeiro é enforcado o jogo termina para todos
                 enforcou = False
 
-                print(f'{dicionario_jogadres[jogador]} é a sua vez.\nA sua palavra tem {len(lista_letras_acertadas[indice])} letras ! ')
+                print(f'\n{dicionario_jogadres[jogador]} é a sua vez.\nA sua palavra tem {len(lista_letras_acertadas[indice])} letras ! ')
                 desenha_forca(erros[indice])
                 print(f'{lista_letras_acertadas[indice]}\n')
 
