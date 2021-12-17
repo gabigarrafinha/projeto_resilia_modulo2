@@ -18,11 +18,6 @@ letras_acertadas = []
 lista_letras_acertadas = []
 pontuacao = {}
 
-#função que criei para pausar o código nas partes que estavam dando erro para poder analisar o corportamento dos laços
-def pause():
-    input("Pressione <enter> para continuar" )
-
-
 
 # função que cria um dicionário de jogadores com um id numérico para cada um deles. O dicionário será usada como origem da lista de jogadores da partida 
 def cria_dicionario_jogadores():
@@ -40,13 +35,12 @@ def cria_dicionario_jogadores():
         dicionario_jogadres.update({id : (input("Qual o nome do jogador?\n "))})
         id += 1
 
-#função que cria a lista de jogadores a cada partida
+#função que cria a lista de jogadores a cada partida, usando como referência a chave do dicionario de jogadores, ou seja, o id de cada um deles
 def cria_lista_jogadores():
     for id in dicionario_jogadres.keys():
         jogadores.append(id)
 
-
-#função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, e um segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra
+#função que atrubui uma palavra a ser acertada para cada jogador, cria uma lista com elas, uma segunda lista com as lacunas a serem preenchidas pelas letras de cada palavra, e uma lista de erros
 def define_palavras():
     for jogador in jogadores: 
         palavra_secreta = carrega_palavra_secreta()
@@ -55,25 +49,25 @@ def define_palavras():
         lista_letras_acertadas.append(letras_acertadas)
         erros.append(0)
 
-#função que sorteia a plavra a ser acertada, usei uma lista comum, depois podemos importar de um arquivo
+#função que sorteia a plavra a ser acertada
 def carrega_palavra_secreta():
     palavra_secreta = random.choice(palavras)
     while palavra_secreta in palavras_secretas:
         palavra_secreta = random.choice(palavras)
     return palavra_secreta.upper()
 
-#função que cria a tabela de pontuação
+#função que cria a tabela de pontuação, que é um dicionário que tem como chave o id do jogador, retirado da lista de jogadores da jogada, e começa com valor zerado
 def cria_tabela_pontos():
     for jogador in jogadores:
         pontuacao [jogador] = 0
     return pontuacao
 
-#função que marca pontos do vencedor
+#função que marca pontos do jogador que acerta uma palavra. Recebe o jogador que acertou como parâmetro
 def marca_ponto(vencedor):
     pontuacao [vencedor] += 1
     return pontuacao
 
-#função que imprime a pontuação
+#função que imprime a tabela pontuação
 def imprime_placar():
     for chave, valor in pontuacao.items():
      print(f"O jogador {chave}, {dicionario_jogadres[chave]},  está com {valor} pontos")
@@ -125,8 +119,7 @@ def jogar():
 
     while not fim_do_jogo:
 
-        #criei uma variável do índice para ser usada no laço realcionando a posição do jogador na lista com a posição da palavra secreta dele e das letras acertadas dele.
-        #a ideia é incrimentar ele durante o for, mas zerar quando o primeiro while começa de novo, para não dar 'out of index'
+        #variável de índice para ser usada no laço realcionando a posição do jogador na lista com a posição da palavra secreta dele, das letras acertadas dele e de seus erros
         indice = 0
         
         if jogadores == []:
@@ -138,7 +131,6 @@ def jogar():
 
 
                 letras_faltando = len(lista_letras_acertadas[indice])
-
 
                 #reset da variável boleana que diz se a pessoa errou a rodada, porque se não for zerada o laço não termina
                 errou_palpite = False
